@@ -24,26 +24,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
+
 @Controller
 @SpringBootApplication
 public class Main {
 
-  public static void main(String[] args) throws Exception {
-    SpringApplication.run(Main.class, args);
-  }
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(Main.class, args);
+    }
 
-  @RequestMapping("/")
-  String index() {
-    return "index";
-  }
+    @RequestMapping("/")
+    String index() {
+        return "index";
+    }
 
-  @RequestMapping("/auth/strava")
-    String auth(@RequestParam(value="state") String state,
-            @RequestParam(value="code") String code,
-            @RequestParam(value="scope")String scope) {
-      StravaAuth auth = new StravaAuth(state, code, scope);
-      System.out.println("Autherisation Information is: " + auth.toString());
-    return "auth_strava";
-  }
+    @RequestMapping("/auth/strava")
+    String auth(@RequestParam(value = "state") String state,
+                @RequestParam(value = "code") String code,
+                @RequestParam(value = "scope") String scope) throws IOException {
+        StravaAuth auth = new StravaAuth(state, code, scope);
+        System.out.println("Autherisation Information is: " + auth.toString());
+
+        System.out.println(auth.getAccessToken());
+        return "auth_strava";
+    }
 
 }
