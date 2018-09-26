@@ -52,8 +52,8 @@ public class StravaAuth {
         HttpPost httppost = new HttpPost("https://www.strava.com/oauth/token");
 
         List<NameValuePair> params = new ArrayList<NameValuePair>(3);
-        params.add(new BasicNameValuePair("client_id", "28817"));
-        params.add(new BasicNameValuePair("client_secret", "f0949137a6f81f4748fedfe204b28c7d02bfb46e"));
+        params.add(new BasicNameValuePair("client_id", "CLIENT_ID_HERE"));
+        params.add(new BasicNameValuePair("client_secret", "CLIENT_SECRET_HERE"));
         params.add(new BasicNameValuePair("code", this.code));
         httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 
