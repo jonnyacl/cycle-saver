@@ -17,8 +17,7 @@
 package com.cycle_saver;
 
 import com.cycle_saver.model.StravaAuth;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -39,8 +38,11 @@ public class Main {
   }
 
   @RequestMapping("/auth/strava")
-  String authStrava() {
-    // Run Callback URI Logic
+    String auth(@RequestParam(value="state") String state,
+            @RequestParam(value="code") String code,
+            @RequestParam(value="scope")String scope) {
+      StravaAuth auth = new StravaAuth(state, code, scope);
+      System.out.println("Autherisation Information is: " + auth.toString());
     return "auth_strava";
   }
 
