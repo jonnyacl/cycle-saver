@@ -17,39 +17,37 @@
 package com.cycle_saver;
 
 import com.cycle_saver.model.StravaAuth;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.sql.DataSource;
+import java.io.IOException;
 
 @Controller
 @SpringBootApplication
 public class Main {
 
-  @Value("${spring.datasource.url}")
-  private String dbUrl;
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(Main.class, args);
+    }
 
-  @Autowired
-  private DataSource dataSource;
+    @RequestMapping("/")
+    String index() {
+        return "index";
+    }
 
-  public static void main(String[] args) throws Exception {
-    SpringApplication.run(Main.class, args);
-  }
+    @RequestMapping("/auth/strava")
+    String auth(@RequestParam(value = "state") String state,
+                @RequestParam(value = "code") String code,
+                @RequestParam(value = "scope") String scope) throws IOException {
+        StravaAuth auth = new StravaAuth(state, code, scope);
+        System.out.println("Autherisation Information is: " + auth.toString());
 
-  @RequestMapping("/")
-  String auth(@RequestParam(value="state") String state,
-                   @RequestParam(value="code") String code,
-                   @RequestParam(value="scope")String scope) {
-    StravaAuth auth = new StravaAuth(state, code, scope);
-    System.out.println(auth.toString());
-    return "index";
-  }
-
-
+        System.out.println(auth.getAccessToken());
+        return "auth_strava";
+    }
 
 }
