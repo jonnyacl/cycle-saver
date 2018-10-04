@@ -8,8 +8,6 @@ public class StravaAuth {
 
     private String scope;
 
-    private String accessToken;
-
     public StravaAuth(String state, String code, String scope) {
         this.state = state;
         this.code = code;
@@ -40,21 +38,11 @@ public class StravaAuth {
         this.scope = scope;
     }
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    @Override
     public String toString() {
         return "StravaAuth{" +
                 "state='" + state + '\'' +
                 ", code='" + code + '\'' +
                 ", scope='" + scope + '\'' +
-                ", accessToken='" + accessToken + '\'' +
                 '}';
     }
 }

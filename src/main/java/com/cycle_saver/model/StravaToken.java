@@ -1,48 +1,50 @@
 package com.cycle_saver.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class StravaToken {
-    private String token_type;
 
-    private String access_token;
+    @SerializedName("token_type")
+    @Expose
+    private String tokenType;
+    @SerializedName("access_token")
+    @Expose
+    private String accessToken;
+    @SerializedName("athlete")
+    @Expose
+    private Athlete athlete;
 
-    private String athlete;
-
-    public StravaToken(String token_type, String access_token, String athlete) {
-        this.token_type = token_type;
-        this.access_token = access_token;
-        this.athlete = athlete;
+    public String getTokenType() {
+        return tokenType;
     }
 
-    public String getToken_type() {
-        return token_type;
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
     }
 
-    public void setToken_type(String token_type) {
-        this.token_type = token_type;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public String getAccess_token() {
-        return access_token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
-    }
-
-    public String getAthlete() {
+    public Athlete getAthlete() {
         return athlete;
     }
 
-    public void setAthlete(String athlete) {
+    public void setAthlete(Athlete athlete) {
         this.athlete = athlete;
     }
 
     @Override
     public String toString() {
         return "StravaToken{" +
-                "token_type='" + token_type + '\'' +
-                ", access_token='" + access_token + '\'' +
-                ", athlete='" + athlete + '\'' +
+                "token_type='" + tokenType + '\'' +
+                ", access_token='" + accessToken + '\'' +
+                ", athlete='" + athlete.getFirstname() + '\'' +
                 '}';
     }
 }
