@@ -1,6 +1,5 @@
 package com.cycle_saver.model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -63,39 +62,13 @@ public class Athlete {
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("follower_count")
-    @Expose
-    private Integer followerCount;
-    @SerializedName("friend_count")
-    @Expose
-    private Integer friendCount;
-    @SerializedName("mutual_friend_count")
-    @Expose
-    private Integer mutualFriendCount;
-    @SerializedName("athlete_type")
-    @Expose
-    private Integer athleteType;
-    @SerializedName("date_preference")
-    @Expose
-    private String datePreference;
-    @SerializedName("measurement_preference")
-    @Expose
-    private String measurementPreference;
-    @SerializedName("clubs")
-    @Expose
-    private List<Club> clubs = null;
-    @SerializedName("ftp")
-    @Expose
-    private Object ftp;
-    @SerializedName("weight")
-    @Expose
-    private Integer weight;
-    @SerializedName("bikes")
-    @Expose
-    private List<Bike> bikes = null;
-    @SerializedName("shoes")
-    @Expose
-    private List<Object> shoes = null;
+
+    public Athlete() {
+    }
+    public Athlete(Integer id) {
+        super();
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;
@@ -247,94 +220,6 @@ public class Athlete {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Integer getFollowerCount() {
-        return followerCount;
-    }
-
-    public void setFollowerCount(Integer followerCount) {
-        this.followerCount = followerCount;
-    }
-
-    public Integer getFriendCount() {
-        return friendCount;
-    }
-
-    public void setFriendCount(Integer friendCount) {
-        this.friendCount = friendCount;
-    }
-
-    public Integer getMutualFriendCount() {
-        return mutualFriendCount;
-    }
-
-    public void setMutualFriendCount(Integer mutualFriendCount) {
-        this.mutualFriendCount = mutualFriendCount;
-    }
-
-    public Integer getAthleteType() {
-        return athleteType;
-    }
-
-    public void setAthleteType(Integer athleteType) {
-        this.athleteType = athleteType;
-    }
-
-    public String getDatePreference() {
-        return datePreference;
-    }
-
-    public void setDatePreference(String datePreference) {
-        this.datePreference = datePreference;
-    }
-
-    public String getMeasurementPreference() {
-        return measurementPreference;
-    }
-
-    public void setMeasurementPreference(String measurementPreference) {
-        this.measurementPreference = measurementPreference;
-    }
-
-    public List<Club> getClubs() {
-        return clubs;
-    }
-
-    public void setClubs(List<Club> clubs) {
-        this.clubs = clubs;
-    }
-
-    public Object getFtp() {
-        return ftp;
-    }
-
-    public void setFtp(Object ftp) {
-        this.ftp = ftp;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-    public List<Bike> getBikes() {
-        return bikes;
-    }
-
-    public void setBikes(List<Bike> bikes) {
-        this.bikes = bikes;
-    }
-
-    public List<Object> getShoes() {
-        return shoes;
-    }
-
-    public void setShoes(List<Object> shoes) {
-        this.shoes = shoes;
     }
 
 }
