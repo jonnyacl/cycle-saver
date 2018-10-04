@@ -63,13 +63,6 @@ public class Athlete {
     @Expose
     private String email;
 
-    public Athlete() {
-    }
-    public Athlete(Integer id) {
-        super();
-        this.id = id;
-    }
-
     public Integer getId() {
         return id;
     }
