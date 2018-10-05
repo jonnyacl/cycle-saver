@@ -16,8 +16,10 @@
 
 package com.cycle_saver;
 
+import com.cycle_saver.controller.StravaAuthController;
 import com.cycle_saver.model.StravaAuth;
 
+import com.cycle_saver.model.StravaToken;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+
+import static java.lang.Integer.parseInt;
 
 @Controller
 @SpringBootApplication
@@ -43,10 +47,10 @@ public class Main {
     String auth(@RequestParam(value = "state") String state,
                 @RequestParam(value = "code") String code,
                 @RequestParam(value = "scope") String scope) throws IOException {
-        StravaAuth auth = new StravaAuth(state, code, scope);
-        System.out.println("Autherisation Information is: " + auth.toString());
-
-        System.out.println(auth.getAccessToken());
+        StravaAuth stravaAuth = new StravaAuth(state, code, scope);
+        System.out.println("Authorisation Information is: " + stravaAuth.toString());
+        StravaAuthController stravaAuthController = new StravaAuthController();
+        StravaToken token = stravaAuthController.requestAccessToken(stravaAuth);
         return "auth_strava";
     }
 
