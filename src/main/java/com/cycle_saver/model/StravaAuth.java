@@ -8,10 +8,8 @@ public class StravaAuth {
 
     private String scope;
 
-    public StravaAuth(String state, String code, String scope) {
-        this.state = state;
+    public StravaAuth(String code) {
         this.code = code;
-        this.scope = scope;
     }
 
     public String getState() {

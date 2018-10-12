@@ -1,7 +1,9 @@
 package com.cycle_saver.controller;
 
+import com.cycle_saver.data_service.UserDataService;
 import com.cycle_saver.model.StravaAuth;
 import com.cycle_saver.model.StravaToken;
+import com.cycle_saver.model.User;
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -12,6 +14,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +23,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StravaAuthController {
+
+    public void authorise(String code){
+        StravaAuth stravaAuth = new StravaAuth(code);
+        System.out.println("Authorisation Information is: " + stravaAuth.toString());
+        StravaToken token = null;
+        try {
+            token = requestAccessToken(stravaAuth);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+        User user = new User(token.getAthlete().getId(), token.getAccessToken());
+        UserDataService userDataService = new UserDataService();
+        userDataService.addUser(user);
+    }
 
     public StravaToken requestAccessToken(StravaAuth authResponse) throws IOException {
         HttpClient httpclient = HttpClients.createDefault();
