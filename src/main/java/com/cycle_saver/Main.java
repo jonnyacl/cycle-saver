@@ -17,9 +17,9 @@
 package com.cycle_saver;
 
 import com.cycle_saver.controller.StravaAuthController;
-import com.cycle_saver.model.StravaAuth;
+import com.cycle_saver.controller.StravaController;
+import com.cycle_saver.model.*;
 
-import com.cycle_saver.model.StravaToken;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -51,6 +51,18 @@ public class Main {
         System.out.println("Authorisation Information is: " + stravaAuth.toString());
         StravaAuthController stravaAuthController = new StravaAuthController();
         StravaToken token = stravaAuthController.requestAccessToken(stravaAuth);
+        Athlete athlete = token.getAthlete();
+        System.out.println(athlete.getId());
+
+        StravaController stravaController = new StravaController();
+        stravaController.getRoutes(athlete, "e2192a3cebe2872cc31c4df1b3515b1ad4148abf");
+        System.out.println("FILTERING COMMUTES");
+        stravaController.filterCommutes(athlete);
+
+        User user = new User();
+        athlete.getActivities().forEach(activity -> user.addJourney(new Journey(activity.getStartLatlng(), activity.getEndLatlng())));
+        System.out.println("User Journeys: " + user.getJourneys().toString());
+
         return "auth_strava";
     }
 

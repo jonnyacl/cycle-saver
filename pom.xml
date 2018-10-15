@@ -3,8 +3,8 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example</groupId>
-  <artifactId>java-getting-started</artifactId>
+  <groupId>com.cycle-saver</groupId>
+  <artifactId>cycle-saver</artifactId>
   <version>1.0</version>
 
   <parent>
@@ -13,7 +13,7 @@
     <version>2.0.1.RELEASE</version>
     <relativePath/>
   </parent>
-  <name>java-getting-started</name>
+  <name>cycle-saver</name>
 
   <properties>
     <java.version>1.8</java.version>
@@ -90,6 +90,11 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-io</artifactId>
       <version>1.3.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20180813</version>
     </dependency>
   </dependencies>
 

@@ -1,5 +1,4 @@
 {
-  "name": "Start on Heroku: Java",
-  "description": "A barebones Java app, which can easily be deployed to Heroku.",
-  "addons": [ "heroku-postgresql" ]
+  "name": "Cauculate Commute Savings",
+  "description": "A simple Heroku application to calculate the savings you have made by cycling or running to work.",
 }

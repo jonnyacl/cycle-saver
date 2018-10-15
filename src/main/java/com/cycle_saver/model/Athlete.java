@@ -3,6 +3,8 @@ package com.cycle_saver.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class Athlete {
 
     @SerializedName("id")
@@ -62,6 +64,18 @@ public class Athlete {
     @SerializedName("email")
     @Expose
     private String email;
+
+    private ArrayList<Activity> activities;
+
+    public ArrayList<Activity> getActivities() { return activities; };
+
+    public void setActivities(ArrayList<Activity> activities) {
+        this.activities = activities;
+    }
+
+    public void addActivity(Activity activity) {
+        this.activities.add(activity);
+    }
 
     public Integer getId() {
         return id;
