@@ -3,7 +3,7 @@
 
 A simple web app to calculate the savings made by commuting via bike. Please note, this is powered by Transport for London and as such will only work within London.
 
-Visit the website at: [https://cycle-saver.herokuapp.com]()
+Visit the website at: [https://cycle-saver.herokuapp.com](https://cycle-saver.herokuapp.com/)
 
 Or Connect your stava account now:\
 [![ ](https://s3-eu-west-1.amazonaws.com/horscatweb/LogInWithStrava.png)](https://www.strava.com/oauth/authorize?client_id=28817&response_type=code&redirect_uri=http://localhost:5000%2Fauth%2Fstrava&approval_prompt=force)
