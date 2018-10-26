@@ -22,10 +22,10 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @SpringBootApplication
-public class Main {
+public class CycleSaver {
 
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+        SpringApplication.run(CycleSaver.class, args);
     }
 
 }

@@ -1,8 +1,8 @@
 package com.cycle_saver.controller;
 
-import com.cycle_saver.model.Athlete;
-import com.cycle_saver.model.StravaAuth;
-import com.cycle_saver.model.StravaToken;
+import com.cycle_saver.model.strava.Athlete;
+import com.cycle_saver.model.strava.StravaAuth;
+import com.cycle_saver.model.strava.StravaToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import org.apache.commons.io.IOUtils;
@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -50,7 +48,7 @@ public class StravaAuthController {
         HttpEntity entity = response.getEntity();
         InputStream instream = entity.getContent();
         String accessTokenResponse = IOUtils.toString(instream, "UTF-8");
-        System.out.println("ACCESS TOKEN RESPONSE " + accessTokenResponse);
+        System.out.println("ACCESS TOKEN RESPONSE: " + accessTokenResponse);
         StravaToken token = parseAccessTokenResponse(accessTokenResponse);
         Athlete athlete = token.getAthlete();
         // store athlete info and add to user data
