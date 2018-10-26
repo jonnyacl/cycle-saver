@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/strava")
-public class StravaAuthController {
+public class StravaAuthController extends BaseController {
 
     private static Logger logger = Logger.getLogger(StravaAuthController.class.getName());
 
