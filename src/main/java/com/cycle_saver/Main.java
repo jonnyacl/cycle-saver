@@ -61,7 +61,8 @@ public class Main {
 
         User user = new User();
         athlete.getActivities().forEach(activity -> user.addJourney(new Journey(activity.getStartLatlng(), activity.getEndLatlng())));
-        System.out.println("User Journeys: " + user.getJourneys().toString());
+        user.getJourneys().forEach(journey -> System.out.println(journey.toString()));
+
 
         return "auth_strava";
     }

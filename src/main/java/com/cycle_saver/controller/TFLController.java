@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClients;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,14 +17,14 @@ import java.util.List;
 
 public class TFLController {
 
-    public void calculateJourney(List startLL, List endLL, String app_key) {
+    public void calculateJourney(List startLL, List endLL, String app_key) throws IOException {
         HttpClient httpclient = HttpClients.createDefault();
         URI uri = null;
         try {
             uri = new URIBuilder()
                     .setScheme("https")
                     .setHost("api.tfl.gov.uk")
-                    .setPath("/journey/journeyresults/" + 51.47,-0.02 + "/to/" + 51.51,-0.08)
+                    .setPath("/journey/journeyresults/" + 51.47 + "," + -0.02 + "/to/" + 51.51 + "," + -0.08)
                     .setParameter("app_key", app_key)
                     .build();
         } catch (URISyntaxException e) {
@@ -36,6 +37,7 @@ public class TFLController {
         HttpEntity entity = response.getEntity();
         InputStream instream = entity.getContent();
         String output = IOUtils.toString(instream, "UTF-8");
-        parseActivitiesResponse(athlete, output);
+        System.out.println(output);
+        //parseActivitiesResponse(athlete, output);
     }
 }

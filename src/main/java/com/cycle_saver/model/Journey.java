@@ -29,4 +29,11 @@ public class Journey {
     }
 
 
+    @Override
+    public String toString() {
+        return "Journey{" +
+                "start_latlng=" + start_latlng +
+                ", end_latlng=" + end_latlng +
+                '}';
+    }
 }
