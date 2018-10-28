@@ -2,11 +2,12 @@ package com.cycle_saver.model.user;
 
 public class User {
 
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private String stravaId;
+    private Integer stravaId;
     private String profileUrl;
 
     public String getFirstName() {
@@ -41,11 +42,11 @@ public class User {
         this.password = password;
     }
 
-    public String getStravaId() {
+    public Integer getStravaId() {
         return stravaId;
     }
 
-    public void setStravaId(String stravaId) {
+    public void setStravaId(Integer stravaId) {
         this.stravaId = stravaId;
     }
 
@@ -55,5 +56,13 @@ public class User {
 
     public void setProfileUrl(String profileUrl) {
         this.profileUrl = profileUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

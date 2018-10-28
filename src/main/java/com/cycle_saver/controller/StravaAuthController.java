@@ -3,6 +3,7 @@ package com.cycle_saver.controller;
 import com.cycle_saver.model.strava.Athlete;
 import com.cycle_saver.model.strava.StravaAuth;
 import com.cycle_saver.model.strava.StravaToken;
+import com.cycle_saver.model.user.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import org.apache.commons.io.IOUtils;
@@ -14,10 +15,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -62,14 +60,18 @@ public class StravaAuthController extends BaseController {
 
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
     @Produces(MediaType.APPLICATION_JSON)
-    Response auth(@RequestParam(value = "state") String state,
-                  @RequestParam(value = "code") String code,
-                  @RequestParam(value = "scope") String scope) throws IOException {
+    Response auth(@RequestHeader("Authorization") String bearer,
+            @RequestParam(value = "state") String state,
+            @RequestParam(value = "code") String code,
+            @RequestParam(value = "scope") String scope) throws IOException {
+        User u = checkAuth(bearer);
         StravaAuth stravaAuth = new StravaAuth(state, code, scope);
         logger.info("Authorisation Information is: " + stravaAuth.toString());
         StravaAuthController stravaAuthController = new StravaAuthController();
         StravaToken token = stravaAuthController.requestAccessToken(stravaAuth);
         Athlete athlete = token.getAthlete();
+        // update our record of user with strava info
+        u.setStravaId(athlete.getId());
         // return athlete info to display on FE
         return Response.ok(athlete).build();
     }
